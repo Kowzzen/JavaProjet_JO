@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="604.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="344.0" fitWidth="600.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                   <Image url="@../Images/Calendrier.jpg" />
+               </image>
+            </ImageView>
+            <DatePicker fx:id="datePicker" layoutX="202.0" layoutY="80.0" onAction="#handleDateChange" prefHeight="42.0" prefWidth="197.0" />
+            <Button layoutY="26.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="600.0" text="Calendrier des compétitions" textFill="#262121" textOverrun="CLIP">
+               <font>
+                  <Font name="Georgia Pro Cond Light" size="19.0" />
+               </font>
+            </Button>
+            <Label layoutX="184.0" layoutY="5.0" prefHeight="19.0" prefWidth="234.0" text="Gestion des Jeux Olympiques 2024">
+               <font>
+                  <Font name="Georgia Pro Light" size="15.0" />
+               </font>
+            </Label>
+            <TableView layoutX="42.0" layoutY="121.0" prefHeight="211.0" prefWidth="516.0">
+              <columns>
+                <TableColumn fx:id="colDate" prefWidth="67.0" text="Date" />
+                  <TableColumn fx:id="colHeure" prefWidth="63.0" text="Heure" />
+                <TableColumn fx:id="colDiscipline" prefWidth="95.0" text="Discipline" />
+                  <TableColumn fx:id="colLieu" prefWidth="64.0" text="Lieu" />
+                  <TableColumn fx:id="colParticipants" prefWidth="116.0" text="Participants" />
+                  <TableColumn fx:id="colResultats" prefWidth="109.0" text="Résultats" />
+              </columns>
+            </TableView>
+            <Label layoutX="10.0" layoutY="45.0" prefHeight="22.0" prefWidth="65.0" text="&lt; ACCUEIL" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
