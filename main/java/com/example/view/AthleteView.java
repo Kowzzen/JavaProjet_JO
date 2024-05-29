@@ -1,17 +1,20 @@
 package com.example.view;
 
 import com.example.model.Athlete;
+import com.example.model.SportDiscipline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class AthleteView {
     private GridPane view;
+    private ObservableList<SportDiscipline> disciplines;
 
-    public AthleteView() {
+    public AthleteView(ObservableList<SportDiscipline> disciplines) {
+        this.disciplines = disciplines;
+
         view = new GridPane();
         view.setHgap(10);
         view.setVgap(10);
@@ -24,6 +27,24 @@ public class AthleteView {
         TextField ageField = new TextField();
         Label genderLabel = new Label("Gender:");
         TextField genderField = new TextField();
+        Label disciplineLabel = new Label("Discipline:");
+        ComboBox<SportDiscipline> disciplineComboBox = new ComboBox<>(disciplines);
+
+        disciplineComboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(SportDiscipline discipline) {
+                return discipline != null ? discipline.getName() : "";
+            }
+
+            @Override
+            public SportDiscipline fromString(String string) {
+                return disciplines.stream()
+                        .filter(discipline -> discipline.getName().equals(string))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
+
         Button addButton = new Button("Add Athlete");
 
         TableView<Athlete> athleteTable = new TableView<>();
@@ -35,8 +56,10 @@ public class AthleteView {
         ageColumn.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
         TableColumn<Athlete, String> genderColumn = new TableColumn<>("Gender");
         genderColumn.setCellValueFactory(cellData -> cellData.getValue().genderProperty());
+        TableColumn<Athlete, String> disciplineColumn = new TableColumn<>("Discipline");
+        disciplineColumn.setCellValueFactory(cellData -> cellData.getValue().disciplineProperty().get().nameProperty());
 
-        athleteTable.getColumns().addAll(nameColumn, countryColumn, ageColumn, genderColumn);
+        athleteTable.getColumns().addAll(nameColumn, countryColumn, ageColumn, genderColumn, disciplineColumn);
 
         ObservableList<Athlete> athleteData = FXCollections.observableArrayList();
         athleteTable.setItems(athleteData);
@@ -46,7 +69,8 @@ public class AthleteView {
             String country = countryField.getText();
             int age = Integer.parseInt(ageField.getText());
             String gender = genderField.getText();
-            Athlete athlete = new Athlete(name, country, age, gender);
+            SportDiscipline discipline = disciplineComboBox.getValue();
+            Athlete athlete = new Athlete(name, country, age, gender, discipline);
             athleteData.add(athlete);
         });
 
@@ -58,8 +82,10 @@ public class AthleteView {
         view.add(ageField, 1, 2);
         view.add(genderLabel, 0, 3);
         view.add(genderField, 1, 3);
-        view.add(addButton, 1, 4);
-        view.add(athleteTable, 0, 5, 2, 1);
+        view.add(disciplineLabel, 0, 4);
+        view.add(disciplineComboBox, 1, 4);
+        view.add(addButton, 1, 5);
+        view.add(athleteTable, 0, 6, 2, 1);
     }
 
     public GridPane getView() {

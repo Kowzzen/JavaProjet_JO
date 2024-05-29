@@ -1,6 +1,7 @@
 package com.example.model;
 
-import javafx.beans.property.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class SportDiscipline {
     private final StringProperty name;

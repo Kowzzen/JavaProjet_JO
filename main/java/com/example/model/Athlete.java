@@ -7,13 +7,17 @@ public class Athlete {
     private final StringProperty country;
     private final IntegerProperty age;
     private final StringProperty gender;
+    private final ObjectProperty<SportDiscipline> discipline;
 
-    public Athlete(String name, String country, int age, String gender) {
+    public Athlete(String name, String country, int age, String gender, SportDiscipline discipline) {
         this.name = new SimpleStringProperty(name);
         this.country = new SimpleStringProperty(country);
         this.age = new SimpleIntegerProperty(age);
         this.gender = new SimpleStringProperty(gender);
+        this.discipline = new SimpleObjectProperty<>(discipline);
     }
+
+    // Getters and Property methods
 
     public String getName() {
         return name.get();
@@ -45,5 +49,13 @@ public class Athlete {
 
     public StringProperty genderProperty() {
         return gender;
+    }
+
+    public SportDiscipline getDiscipline() {
+        return discipline.get();
+    }
+
+    public ObjectProperty<SportDiscipline> disciplineProperty() {
+        return discipline;
     }
 }

@@ -2,6 +2,7 @@ package com.example.view;
 
 import com.example.model.Result;
 import com.example.model.Athlete;
+import com.example.model.SportDiscipline;
 import com.example.model.SportEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,8 +42,12 @@ public class ResultView {
             String athleteName = athleteField.getText();
             String eventName = eventField.getText();
             int score = Integer.parseInt(scoreField.getText());
-            Athlete athlete = new Athlete(athleteName, "", 0, "");
-            SportEvent event = new SportEvent(eventName, "");
+
+            // Créez un SportDiscipline factice pour l'exemple
+            SportDiscipline fakeDiscipline = new SportDiscipline("Discipline");
+
+            Athlete athlete = new Athlete(athleteName, "", 0, "", fakeDiscipline);
+            SportEvent event = new SportEvent(eventName, "", "", "", "", "", "");
             Result result = new Result(athlete, event, score);
             resultData.add(result);
         });

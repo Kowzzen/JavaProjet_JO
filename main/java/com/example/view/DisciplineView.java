@@ -8,8 +8,10 @@ import javafx.scene.layout.GridPane;
 
 public class DisciplineView {
     private GridPane view;
+    private ObservableList<SportDiscipline> disciplineData;
 
-    public DisciplineView() {
+    public DisciplineView(ObservableList<SportDiscipline> disciplineData) {
+        this.disciplineData = disciplineData;
         view = new GridPane();
         view.setHgap(10);
         view.setVgap(10);
@@ -23,8 +25,6 @@ public class DisciplineView {
         disciplineColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
         disciplineTable.getColumns().add(disciplineColumn);
-
-        ObservableList<SportDiscipline> disciplineData = FXCollections.observableArrayList();
         disciplineTable.setItems(disciplineData);
 
         addButton.setOnAction(e -> {

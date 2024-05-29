@@ -62,7 +62,7 @@
                 </Button>
                 <MenuButton layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Fonctionnalités">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleMenuAction1" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleCalendrierView" text="Calendrier" />
                         <MenuItem mnemonicParsing="false" onAction="#handleMenuAction2" text="Action 2" />
                     </items>
                 </MenuButton>
