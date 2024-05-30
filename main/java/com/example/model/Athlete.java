@@ -3,36 +3,36 @@ package com.example.model;
 import javafx.beans.property.*;
 
 public class Athlete {
-    private final StringProperty name;
-    private final StringProperty country;
+    private final StringProperty nom;
+    private final StringProperty pays;
     private final IntegerProperty age;
-    private final StringProperty gender;
+    private final StringProperty genre;
     private final ObjectProperty<SportDiscipline> discipline;
 
-    public Athlete(String name, String country, int age, String gender, SportDiscipline discipline) {
-        this.name = new SimpleStringProperty(name);
-        this.country = new SimpleStringProperty(country);
+    public Athlete(String nom, String pays, int age, String genre, SportDiscipline discipline) {
+        this.nom = new SimpleStringProperty(nom);
+        this.pays = new SimpleStringProperty(pays);
         this.age = new SimpleIntegerProperty(age);
-        this.gender = new SimpleStringProperty(gender);
+        this.genre = new SimpleStringProperty(genre);
         this.discipline = new SimpleObjectProperty<>(discipline);
     }
 
     // Getters and Property methods
 
-    public String getName() {
-        return name.get();
+    public String getNom() {
+        return nom.get();
     }
 
-    public StringProperty nameProperty() {
-        return name;
+    public StringProperty nomProperty() {
+        return nom;
     }
 
-    public String getCountry() {
-        return country.get();
+    public String getPays() {
+        return pays.get();
     }
 
-    public StringProperty countryProperty() {
-        return country;
+    public StringProperty paysProperty() {
+        return pays;
     }
 
     public int getAge() {
@@ -43,12 +43,12 @@ public class Athlete {
         return age;
     }
 
-    public String getGender() {
-        return gender.get();
+    public String getGenre() {
+        return genre.get();
     }
 
     public StringProperty genderProperty() {
-        return gender;
+        return genre;
     }
 
     public SportDiscipline getDiscipline() {

@@ -4,17 +4,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class SportDiscipline {
-    private final StringProperty name;
+    private final StringProperty nom;
 
     public SportDiscipline(String name) {
-        this.name = new SimpleStringProperty(name);
+        this.nom = new SimpleStringProperty(name);
     }
 
     public String getName() {
-        return name.get();
+        return nom.get();
     }
 
     public StringProperty nameProperty() {
-        return name;
+        return nom;
     }
 }

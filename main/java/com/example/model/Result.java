@@ -5,12 +5,12 @@ import javafx.beans.property.*;
 public class Result {
     private final ObjectProperty<Athlete> athlete;
     private final ObjectProperty<SportEvent> event;
-    private final IntegerProperty score;
+    private final StringProperty medaille; // "Or", "Argent", "Bronze"
 
-    public Result(Athlete athlete, SportEvent event, int score) {
+    public Result(Athlete athlete, SportEvent event, String medal) {
         this.athlete = new SimpleObjectProperty<>(athlete);
         this.event = new SimpleObjectProperty<>(event);
-        this.score = new SimpleIntegerProperty(score);
+        this.medaille = new SimpleStringProperty(medal);
     }
 
     public Athlete getAthlete() {
@@ -29,11 +29,23 @@ public class Result {
         return event;
     }
 
-    public int getScore() {
-        return score.get();
+    public String getMedal() {
+        return medaille.get();
     }
 
-    public IntegerProperty scoreProperty() {
-        return score;
+    public StringProperty medalProperty() {
+        return medaille;
+    }
+
+    public void setAthlete(Athlete athlete) {
+        this.athlete.set(athlete);
+    }
+
+    public void setEvent(SportEvent event) {
+        this.event.set(event);
+    }
+
+    public void setMedal(String medal) {
+        this.medaille.set(medal);
     }
 }

@@ -1,45 +1,71 @@
 package com.example.view;
 
 import com.example.model.SportDiscipline;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 
 public class DisciplineView {
-    private GridPane view;
-    private ObservableList<SportDiscipline> disciplineData;
+    private VBox view;
+    private ObservableList<SportDiscipline> disciplines;
 
-    public DisciplineView(ObservableList<SportDiscipline> disciplineData) {
-        this.disciplineData = disciplineData;
-        view = new GridPane();
-        view.setHgap(10);
-        view.setVgap(10);
+    public DisciplineView(ObservableList<SportDiscipline> disciplines) {
+        this.disciplines = disciplines;
 
-        Label disciplineLabel = new Label("Discipline:");
-        TextField disciplineField = new TextField();
-        Button addButton = new Button("Add Discipline");
+        view = new VBox(10);
+        view.setPadding(new Insets(20));
+        view.setStyle("-fx-background-color: #f5f5f5;");
 
-        TableView<SportDiscipline> disciplineTable = new TableView<>();
-        TableColumn<SportDiscipline, String> disciplineColumn = new TableColumn<>("Discipline");
-        disciplineColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        GridPane form = new GridPane();
+        form.setHgap(10);
+        form.setVgap(10);
+        form.setPadding(new Insets(10));
+        form.setStyle("-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;");
 
-        disciplineTable.getColumns().add(disciplineColumn);
-        disciplineTable.setItems(disciplineData);
+        Label titleLabel = new Label("Ajouter une nouvelle discipline");
+        titleLabel.setFont(new Font(20));
+        titleLabel.setPadding(new Insets(0, 0, 20, 0));
+
+        Label nameLabel = new Label("Nom discipline:");
+        TextField nameField = new TextField();
+
+        Button addButton = new Button("Ajouter une discipline");
+        addButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
 
         addButton.setOnAction(e -> {
-            String name = disciplineField.getText();
+            String name = nameField.getText();
             SportDiscipline discipline = new SportDiscipline(name);
-            disciplineData.add(discipline);
+            disciplines.add(discipline);
         });
 
-        view.add(disciplineLabel, 0, 0);
-        view.add(disciplineField, 1, 0);
-        view.add(addButton, 1, 1);
-        view.add(disciplineTable, 0, 2, 2, 1);
+        form.add(nameLabel, 0, 0);
+        form.add(nameField, 1, 0);
+        form.add(addButton, 1, 1);
+
+        TableView<SportDiscipline> tableView = new TableView<>(disciplines);
+        tableView.setStyle("-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5;");
+        TableColumn<SportDiscipline, String> nameColumn = new TableColumn<>("Nom de la Discipline");
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+
+        tableView.getColumns().add(nameColumn);
+
+        Button homeButton = new Button("Accueil");
+        homeButton.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
+
+        HBox centeredForm = new HBox(form);
+        centeredForm.setAlignment(Pos.CENTER);
+
+        HBox centeredTableView = new HBox(tableView);
+        centeredTableView.setAlignment(Pos.CENTER);
+
+        view.getChildren().addAll(titleLabel, centeredForm, centeredTableView, homeButton);
+        view.setAlignment(Pos.CENTER);
     }
 
-    public GridPane getView() {
+    public VBox getView() {
         return view;
     }
 }

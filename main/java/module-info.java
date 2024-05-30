@@ -11,17 +11,15 @@ module com.example.jo_application {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    // Ouvrir les packages nécessaires pour javafx.fxml
+
 
     opens com.example.controller to javafx.fxml;
     opens com.example.view to javafx.fxml;
 
-    // Exporter les packages nécessaires
+    // Exportation des packages nécessaires
 
     exports com.example.controller;
     exports com.example.view;
     exports com.example.model;
-
-    // Exporter le package com.example vers javafx.graphics
     exports com.example to javafx.graphics;
 }

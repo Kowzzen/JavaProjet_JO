@@ -1,33 +1,34 @@
 package com.example.model;
 
 import javafx.beans.property.*;
+import java.time.LocalDate;
 
 public class SportEvent {
-    private final StringProperty name;
+    private final StringProperty nom;
     private final StringProperty discipline;
-    private final StringProperty date;
-    private final StringProperty time;
-    private final StringProperty location;
+    private final ObjectProperty<LocalDate> date;
+    private final StringProperty heure;
+    private final StringProperty lieu;
     private final StringProperty participants;
     private final StringProperty results;
 
-    public SportEvent(String name, String discipline, String date, String time, String location, String participants, String results) {
-        this.name = new SimpleStringProperty(name);
+    public SportEvent(String name, String discipline, LocalDate date, String time, String location, String participants, String results) {
+        this.nom = new SimpleStringProperty(name);
         this.discipline = new SimpleStringProperty(discipline);
-        this.date = new SimpleStringProperty(date);
-        this.time = new SimpleStringProperty(time);
-        this.location = new SimpleStringProperty(location);
+        this.date = new SimpleObjectProperty<>(date);
+        this.heure = new SimpleStringProperty(time);
+        this.lieu = new SimpleStringProperty(location);
         this.participants = new SimpleStringProperty(participants);
         this.results = new SimpleStringProperty(results);
     }
 
     // Getters and Property Methods
-    public String getName() {
-        return name.get();
+    public String getNom() {
+        return nom.get();
     }
 
-    public StringProperty nameProperty() {
-        return name;
+    public StringProperty nomProperty() {
+        return nom;
     }
 
     public String getDiscipline() {
@@ -38,28 +39,28 @@ public class SportEvent {
         return discipline;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date.get();
     }
 
-    public StringProperty dateProperty() {
+    public ObjectProperty<LocalDate> dateProperty() {
         return date;
     }
 
     public String getTime() {
-        return time.get();
+        return heure.get();
     }
 
     public StringProperty timeProperty() {
-        return time;
+        return heure;
     }
 
     public String getLocation() {
-        return location.get();
+        return lieu.get();
     }
 
     public StringProperty locationProperty() {
-        return location;
+        return lieu;
     }
 
     public String getParticipants() {
